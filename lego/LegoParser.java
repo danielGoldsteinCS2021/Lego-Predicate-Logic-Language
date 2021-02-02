@@ -1,12 +1,10 @@
-// Generated from Lego.g4 by ANTLR 4.9.1
+package lego;// Generated from Lego.g4 by ANTLR 4.9.1
 import org.antlr.v4.runtime.atn.*;
 import org.antlr.v4.runtime.dfa.DFA;
 import org.antlr.v4.runtime.*;
-import org.antlr.v4.runtime.misc.*;
 import org.antlr.v4.runtime.tree.*;
+
 import java.util.List;
-import java.util.Iterator;
-import java.util.ArrayList;
 
 @SuppressWarnings({"all", "warnings", "unchecked", "unused", "cast"})
 public class LegoParser extends Parser {
@@ -81,7 +79,7 @@ public class LegoParser extends Parser {
 	}
 
 	@Override
-	public String getGrammarFileName() { return "Lego.g4"; }
+	public String getGrammarFileName() { return "lego/Lego.g4"; }
 
 	@Override
 	public String[] getRuleNames() { return ruleNames; }
@@ -108,7 +106,7 @@ public class LegoParser extends Parser {
 		@Override public int getRuleIndex() { return RULE_program; }
 		@Override
 		public <T> T accept(ParseTreeVisitor<? extends T> visitor) {
-			if ( visitor instanceof LegoVisitor ) return ((LegoVisitor<? extends T>)visitor).visitProgram(this);
+			if ( visitor instanceof LegoVisitor) return ((LegoVisitor<? extends T>)visitor).visitProgram(this);
 			else return visitor.visitChildren(this);
 		}
 	}

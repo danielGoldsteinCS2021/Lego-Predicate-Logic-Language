@@ -1,12 +1,9 @@
-// Generated from Lego.g4 by ANTLR 4.9.1
+package lego;// Generated from Lego.g4 by ANTLR 4.9.1
 import org.antlr.v4.runtime.Lexer;
 import org.antlr.v4.runtime.CharStream;
-import org.antlr.v4.runtime.Token;
-import org.antlr.v4.runtime.TokenStream;
 import org.antlr.v4.runtime.*;
 import org.antlr.v4.runtime.atn.*;
 import org.antlr.v4.runtime.dfa.DFA;
-import org.antlr.v4.runtime.misc.*;
 
 @SuppressWarnings({"all", "warnings", "unchecked", "unused", "cast"})
 public class LegoLexer extends Lexer {
@@ -94,7 +91,7 @@ public class LegoLexer extends Lexer {
 	}
 
 	@Override
-	public String getGrammarFileName() { return "Lego.g4"; }
+	public String getGrammarFileName() { return "lego/Lego.g4"; }
 
 	@Override
 	public String[] getRuleNames() { return ruleNames; }

@@ -6,11 +6,11 @@
  * We make no guarantees that this code is fit for any purpose.
  * Visit http://www.pragmaticprogrammer.com/titles/tpantlr2 for more book information.
  ***/
+import lego.LegoLexer;
+import lego.LegoParser;
 import org.antlr.v4.runtime.*;
 import org.antlr.v4.runtime.tree.ParseTree;
-
-import java.io.FileInputStream;
-import java.io.InputStream;
+import lego.EvalVisitor;
 
 public class Main {
     public static void main(String[] args) throws Exception {
@@ -22,6 +22,6 @@ public class Main {
         ParseTree tree = parser.program(); // parse
 
         EvalVisitor eval = new EvalVisitor();
-        eval.visit(tree);
+        //eval.visit(tree);
     }
 }

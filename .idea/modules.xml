@@ -4,6 +4,7 @@
     <modules>
       <module fileurl="file://$PROJECT_DIR$/Project.iml" filepath="$PROJECT_DIR$/Project.iml" />
       <module fileurl="file://$PROJECT_DIR$/ast/ast.iml" filepath="$PROJECT_DIR$/ast/ast.iml" />
+      <module fileurl="file://$PROJECT_DIR$/astPackage/astPackage.iml" filepath="$PROJECT_DIR$/astPackage/astPackage.iml" />
     </modules>
   </component>
 </project>
