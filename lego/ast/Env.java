@@ -6,15 +6,15 @@ import java.util.Deque;
 public class Env {
     Deque<VarTuple> stack = new ArrayDeque<>();
 
-    void push(String vName, int vValue){
+    public void push(String vName, int vValue){
         stack.push(new VarTuple(vName, vValue));
     }
 
-    VarTuple pop(){
+    public VarTuple pop(){
         return stack.pop();
     }
 
-    int search(String name){
+    public int search(String name){
         for (VarTuple v: stack){
             if (v.name.equals(name))
                 return v.value;

@@ -6,7 +6,7 @@ import lego.ast.Formula;
 
 public abstract class BaseEvalVisitor {
     protected abstract Boolean evalFormula(Formula formula, Env env);
-    protected abstract Integer evalExp(Expr expr, Env env);
+    protected abstract Integer evalExpr(Expr expr, Env env);
 
 
     // eval overloading
@@ -14,6 +14,6 @@ public abstract class BaseEvalVisitor {
         return evalFormula(formula, new Env());
     }
     public int eval(Expr expr){
-        return evalExp(expr, new Env());
+        return evalExpr(expr, new Env());
     }
 }
