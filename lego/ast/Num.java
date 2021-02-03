@@ -1,8 +1,8 @@
 package lego.ast;
 
-public class Int extends Expr{
+public class Num extends Expr{
     public int value;
-    public Int(int value){
+    public Num(int value){
         this.value = value;
     }
 }

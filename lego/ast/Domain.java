@@ -1,9 +1,9 @@
 package lego.ast;
 
 public class Domain implements ASTNode{
-    public int start;
-    public int end;
-    public Domain(int start, int end){
+    public Num start;
+    public Num end;
+    public Domain(Num start, Num end){
         this.start = start;
         this.end = end;
     }
