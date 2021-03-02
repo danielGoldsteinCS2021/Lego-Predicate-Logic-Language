@@ -31,6 +31,8 @@ public class EvalVisitor extends BaseEvalVisitor{
         }
         if (expr instanceof Binary_expr)
             return evalBinary_expr(((Binary_expr) expr).binOp, ((Binary_expr) expr).lhs, ((Binary_expr) expr).rhs, env);
+        if (expr instanceof Binary_expr_lower)
+            return evalBinary_expr_lower(((Binary_expr_lower) expr).binOp_lower, ((Binary_expr_lower) expr).lhs, ((Binary_expr_lower) expr).rhs, env);
         // should not get here
         return null;
     }
@@ -94,10 +96,6 @@ public class EvalVisitor extends BaseEvalVisitor{
     public Integer evalBinary_expr(Bin_op op, Expr lhs, Expr rhs, Env env){
         int left = evalExpr(lhs, env);
         int right = evalExpr(rhs, env);
-        if (op.kind == Bin_op.Kind.ADD)
-            return left+right;
-        if (op.kind == Bin_op.Kind.SUB)
-            return left-right;
         if (op.kind == Bin_op.Kind.MUL)
             return left*right;
         if (op.kind == Bin_op.Kind.DIV){
@@ -114,5 +112,15 @@ public class EvalVisitor extends BaseEvalVisitor{
         return null;
     }
 
+    public Integer evalBinary_expr_lower(Bin_op_lower op, Expr lhs, Expr rhs, Env env){
+        int left = evalExpr(lhs, env);
+        int right = evalExpr(rhs, env);
+        if (op.kind == Bin_op_lower.Kind.ADD)
+            return left+right;
+        if (op.kind == Bin_op_lower.Kind.SUB)
+            return left-right;
+        // should not get here
+        return null;
+    }
 
 }

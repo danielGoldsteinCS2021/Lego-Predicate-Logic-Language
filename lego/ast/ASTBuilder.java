@@ -60,6 +60,14 @@ public class ASTBuilder extends LegoBaseVisitor<ASTNode> {
     }
 
     @Override
+    public ASTNode visitBin_op_lowerExpr(LegoParser.Bin_op_lowerExprContext ctx) {
+        Bin_op_lower op = (Bin_op_lower) visitBin_op_lower(ctx.bin_op_lower());
+        Expr lhs = (Expr) visitExpr(ctx.expr(0));
+        Expr rhs = (Expr) visitExpr(ctx.expr(1));
+        return new Binary_expr_lower(op, lhs, rhs);
+    }
+
+    @Override
     public ASTNode visitBracketedExpr(LegoParser.BracketedExprContext ctx) {
         return visitExpr(ctx.expr());
     }
@@ -105,16 +113,22 @@ public class ASTBuilder extends LegoBaseVisitor<ASTNode> {
 
     @Override
     public ASTNode visitBin_op(LegoParser.Bin_opContext ctx) {
-        if (ctx.ADD() != null)
-            return Bin_op.ADD();
-        if (ctx.SUB() != null)
-            return Bin_op.SUB();
         if (ctx.MUL() != null)
             return Bin_op.MUL();
         if (ctx.DIV() != null)
             return Bin_op.DIV();
         if (ctx.MOD() != null)
             return Bin_op.MOD();
+        // should not get here
+        throw new IllegalArgumentException();
+    }
+
+    @Override
+    public ASTNode visitBin_op_lower(LegoParser.Bin_op_lowerContext ctx) {
+        if (ctx.ADD() != null)
+            return Bin_op_lower.ADD();
+        if (ctx.SUB() != null)
+            return Bin_op_lower.SUB();
         // should not get here
         throw new IllegalArgumentException();
     }
@@ -193,6 +207,8 @@ public class ASTBuilder extends LegoBaseVisitor<ASTNode> {
     public ASTNode visitExpr(LegoParser.ExprContext ctx){
         if (ctx instanceof LegoParser.Bin_opExprContext)
             return visitBin_opExpr((LegoParser.Bin_opExprContext) ctx);
+        if (ctx instanceof LegoParser.Bin_op_lowerExprContext)
+            return visitBin_op_lowerExpr((LegoParser.Bin_op_lowerExprContext) ctx);
         if (ctx instanceof LegoParser.NumberExprContext)
             return visitNumberExpr((LegoParser.NumberExprContext) ctx);
         if (ctx instanceof LegoParser.VarExprContext)

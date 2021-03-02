@@ -12,6 +12,7 @@ formula: expr rel_op expr                   #rel_opFormula
     ;
 
 expr: expr bin_op expr                      #bin_opExpr
+    | expr bin_op_lower expr                #bin_op_lowerExpr
 	| number                                #numberExpr
 	| var                                   #varExpr
 	| '(' expr ')'                          #bracketedExpr
@@ -22,7 +23,14 @@ number: INT | NEGINT ;
 var: ID ;
 
 rel_op: GT | GTE | EQ | LT | LTE ;
-bin_op: MUL | DIV | ADD | SUB | MOD ;
+bin_op: MUL
+      | DIV
+      | MOD
+      ;
+bin_op_lower: ADD // This rule is needed to enforce lower precende on addition and multiplicaiton
+            | SUB
+            ;
+
 unary_conn: NOT ;
 binary_conn: AND | OR | IMPL | EQUIV ;
 quantifier: FORALL | EXISTS ;

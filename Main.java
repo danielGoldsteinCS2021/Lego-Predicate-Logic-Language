@@ -4,7 +4,6 @@ import lego.ast.ASTBuilder;
 import lego.ast.Expr;
 import lego.ast.Formula;
 import org.antlr.v4.runtime.*;
-import org.antlr.v4.runtime.tree.ParseTree;
 import lego.EvalVisitor;
 // FIX BEDMAS ISSUE, CURRENTLY NOT DOING BEDMAS
 public class Main {

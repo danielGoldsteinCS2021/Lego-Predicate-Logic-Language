@@ -85,6 +85,13 @@ public interface LegoVisitor<T> extends ParseTreeVisitor<T> {
 	 */
 	T visitBracketedExpr(LegoParser.BracketedExprContext ctx);
 	/**
+	 * Visit a parse tree produced by the {@code bin_op_lowerExpr}
+	 * labeled alternative in {@link LegoParser#expr}.
+	 * @param ctx the parse tree
+	 * @return the visitor result
+	 */
+	T visitBin_op_lowerExpr(LegoParser.Bin_op_lowerExprContext ctx);
+	/**
 	 * Visit a parse tree produced by {@link LegoParser#domain}.
 	 * @param ctx the parse tree
 	 * @return the visitor result
@@ -114,6 +121,12 @@ public interface LegoVisitor<T> extends ParseTreeVisitor<T> {
 	 * @return the visitor result
 	 */
 	T visitBin_op(LegoParser.Bin_opContext ctx);
+	/**
+	 * Visit a parse tree produced by {@link LegoParser#bin_op_lower}.
+	 * @param ctx the parse tree
+	 * @return the visitor result
+	 */
+	T visitBin_op_lower(LegoParser.Bin_op_lowerContext ctx);
 	/**
 	 * Visit a parse tree produced by {@link LegoParser#unary_conn}.
 	 * @param ctx the parse tree
