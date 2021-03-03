@@ -1,0 +1,47 @@
+plugins {
+    id 'antlr'
+    id 'java'
+}
+
+group 'org.example'
+version '1.0-SNAPSHOT'
+
+repositories {
+    mavenCentral()
+}
+
+dependencies {
+    compile "org.antlr:antlr4-runtime:4.9"
+    antlr 'org.antlr:antlr4:4.9'
+}
+
+jar{
+    manifest{
+       attributes 'Main-Class' : 'Main'  // we define our main class here, overridden from mavenCentral
+    }
+    baseName 'eval'  // name for archive (.jar file)
+    from configurations.compile.collect { it.isDirectory() ? it : zipTree(it) }  // recopy File tree if we're a directory
+}
+
+generateGrammarSource {
+    arguments = ['-visitor', '-no-listener', '-package', 'lego'] // these are the arguments passed to the antlr4 command
+    outputDirectory = file("${project.buildDir}/generated-src/main/java/lego/") // output all files generate from antlr4 here
+}
+
+generateGrammarSource.doLast {
+    copy {
+        from "${project.buildDir}/generated-src/main/java/" // take lego folder from build dir
+        into "src/generated/java" // copy it into src sub directories so Antlr files can be accessed via src code
+    }
+}
+
+compileJava.dependsOn generateGrammarSource // java code can't be compiled until grammar has been generated
+
+task removeGeneratedSource(type: Delete){
+    delete 'src/generated/'
+}
+
+clean.dependsOn removeGeneratedSource
+
+
+sourceSets.main.java.srcDirs += file("src/generated/java")
