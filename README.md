@@ -3,7 +3,7 @@
 ### How to run:
 
 ---
-#####In a terminal window:   
+#### In a terminal window:   
 `./gradlew`    
 Project built   
 `cd Project/build/classes/java/main`  
