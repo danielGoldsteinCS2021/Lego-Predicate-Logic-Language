@@ -19,16 +19,16 @@ public class LegoParser extends Parser {
 	public static final int
 		T__0=1, T__1=2, T__2=3, T__3=4, T__4=5, T__5=6, T__6=7, MUL=8, DIV=9, 
 		ADD=10, SUB=11, MOD=12, GT=13, GTE=14, EQ=15, LT=16, LTE=17, NOT=18, AND=19, 
-		OR=20, IMPL=21, EQUIV=22, FORALL=23, EXISTS=24, ID=25, INT=26, NEGINT=27, 
-		NEWLINE=28, WS=29;
+		OR=20, IMPL=21, EQUIV=22, FORALL=23, EXISTS=24, ID=25, INT=26, NEWLINE=27, 
+		WS=28;
 	public static final int
-		RULE_program = 0, RULE_start = 1, RULE_formula = 2, RULE_expr = 3, RULE_domain = 4, 
-		RULE_number = 5, RULE_var = 6, RULE_rel_op = 7, RULE_bin_op = 8, RULE_bin_op_lower = 9, 
-		RULE_unary_conn = 10, RULE_binary_conn = 11, RULE_quantifier = 12;
+		RULE_program = 0, RULE_start = 1, RULE_formula = 2, RULE_expr = 3, RULE_rel_op = 4, 
+		RULE_bin_op = 5, RULE_bin_op_lower = 6, RULE_unary_conn = 7, RULE_binary_conn = 8, 
+		RULE_quantifier = 9, RULE_domain = 10, RULE_number = 11, RULE_var = 12;
 	private static String[] makeRuleNames() {
 		return new String[] {
-			"program", "start", "formula", "expr", "domain", "number", "var", "rel_op", 
-			"bin_op", "bin_op_lower", "unary_conn", "binary_conn", "quantifier"
+			"program", "start", "formula", "expr", "rel_op", "bin_op", "bin_op_lower", 
+			"unary_conn", "binary_conn", "quantifier", "domain", "number", "var"
 		};
 	}
 	public static final String[] ruleNames = makeRuleNames();
@@ -44,7 +44,7 @@ public class LegoParser extends Parser {
 		return new String[] {
 			null, null, null, null, null, null, null, null, "MUL", "DIV", "ADD", 
 			"SUB", "MOD", "GT", "GTE", "EQ", "LT", "LTE", "NOT", "AND", "OR", "IMPL", 
-			"EQUIV", "FORALL", "EXISTS", "ID", "INT", "NEGINT", "NEWLINE", "WS"
+			"EQUIV", "FORALL", "EXISTS", "ID", "INT", "NEWLINE", "WS"
 		};
 	}
 	private static final String[] _SYMBOLIC_NAMES = makeSymbolicNames();
@@ -124,7 +124,7 @@ public class LegoParser extends Parser {
 			setState(27);
 			_errHandler.sync(this);
 			_la = _input.LA(1);
-			if ((((_la) & ~0x3f) == 0 && ((1L << _la) & ((1L << T__2) | (1L << NOT) | (1L << FORALL) | (1L << EXISTS) | (1L << ID) | (1L << INT) | (1L << NEGINT))) != 0)) {
+			if ((((_la) & ~0x3f) == 0 && ((1L << _la) & ((1L << T__2) | (1L << SUB) | (1L << NOT) | (1L << FORALL) | (1L << EXISTS) | (1L << ID) | (1L << INT))) != 0)) {
 				{
 				setState(26);
 				start();
@@ -500,8 +500,8 @@ public class LegoParser extends Parser {
 			setState(72);
 			_errHandler.sync(this);
 			switch (_input.LA(1)) {
+			case SUB:
 			case INT:
-			case NEGINT:
 				{
 				_localctx = new NumberExprContext(_localctx);
 				_ctx = _localctx;
@@ -592,131 +592,6 @@ public class LegoParser extends Parser {
 		return _localctx;
 	}
 
-	public static class DomainContext extends ParserRuleContext {
-		public List<NumberContext> number() {
-			return getRuleContexts(NumberContext.class);
-		}
-		public NumberContext number(int i) {
-			return getRuleContext(NumberContext.class,i);
-		}
-		public DomainContext(ParserRuleContext parent, int invokingState) {
-			super(parent, invokingState);
-		}
-		@Override public int getRuleIndex() { return RULE_domain; }
-		@Override
-		public <T> T accept(ParseTreeVisitor<? extends T> visitor) {
-			if ( visitor instanceof LegoVisitor ) return ((LegoVisitor<? extends T>)visitor).visitDomain(this);
-			else return visitor.visitChildren(this);
-		}
-	}
-
-	public final DomainContext domain() throws RecognitionException {
-		DomainContext _localctx = new DomainContext(_ctx, getState());
-		enterRule(_localctx, 8, RULE_domain);
-		try {
-			enterOuterAlt(_localctx, 1);
-			{
-			setState(87);
-			match(T__4);
-			setState(88);
-			number();
-			setState(89);
-			match(T__5);
-			setState(90);
-			number();
-			setState(91);
-			match(T__6);
-			}
-		}
-		catch (RecognitionException re) {
-			_localctx.exception = re;
-			_errHandler.reportError(this, re);
-			_errHandler.recover(this, re);
-		}
-		finally {
-			exitRule();
-		}
-		return _localctx;
-	}
-
-	public static class NumberContext extends ParserRuleContext {
-		public TerminalNode INT() { return getToken(LegoParser.INT, 0); }
-		public TerminalNode NEGINT() { return getToken(LegoParser.NEGINT, 0); }
-		public NumberContext(ParserRuleContext parent, int invokingState) {
-			super(parent, invokingState);
-		}
-		@Override public int getRuleIndex() { return RULE_number; }
-		@Override
-		public <T> T accept(ParseTreeVisitor<? extends T> visitor) {
-			if ( visitor instanceof LegoVisitor ) return ((LegoVisitor<? extends T>)visitor).visitNumber(this);
-			else return visitor.visitChildren(this);
-		}
-	}
-
-	public final NumberContext number() throws RecognitionException {
-		NumberContext _localctx = new NumberContext(_ctx, getState());
-		enterRule(_localctx, 10, RULE_number);
-		int _la;
-		try {
-			enterOuterAlt(_localctx, 1);
-			{
-			setState(93);
-			_la = _input.LA(1);
-			if ( !(_la==INT || _la==NEGINT) ) {
-			_errHandler.recoverInline(this);
-			}
-			else {
-				if ( _input.LA(1)==Token.EOF ) matchedEOF = true;
-				_errHandler.reportMatch(this);
-				consume();
-			}
-			}
-		}
-		catch (RecognitionException re) {
-			_localctx.exception = re;
-			_errHandler.reportError(this, re);
-			_errHandler.recover(this, re);
-		}
-		finally {
-			exitRule();
-		}
-		return _localctx;
-	}
-
-	public static class VarContext extends ParserRuleContext {
-		public TerminalNode ID() { return getToken(LegoParser.ID, 0); }
-		public VarContext(ParserRuleContext parent, int invokingState) {
-			super(parent, invokingState);
-		}
-		@Override public int getRuleIndex() { return RULE_var; }
-		@Override
-		public <T> T accept(ParseTreeVisitor<? extends T> visitor) {
-			if ( visitor instanceof LegoVisitor ) return ((LegoVisitor<? extends T>)visitor).visitVar(this);
-			else return visitor.visitChildren(this);
-		}
-	}
-
-	public final VarContext var() throws RecognitionException {
-		VarContext _localctx = new VarContext(_ctx, getState());
-		enterRule(_localctx, 12, RULE_var);
-		try {
-			enterOuterAlt(_localctx, 1);
-			{
-			setState(95);
-			match(ID);
-			}
-		}
-		catch (RecognitionException re) {
-			_localctx.exception = re;
-			_errHandler.reportError(this, re);
-			_errHandler.recover(this, re);
-		}
-		finally {
-			exitRule();
-		}
-		return _localctx;
-	}
-
 	public static class Rel_opContext extends ParserRuleContext {
 		public TerminalNode GT() { return getToken(LegoParser.GT, 0); }
 		public TerminalNode GTE() { return getToken(LegoParser.GTE, 0); }
@@ -736,12 +611,12 @@ public class LegoParser extends Parser {
 
 	public final Rel_opContext rel_op() throws RecognitionException {
 		Rel_opContext _localctx = new Rel_opContext(_ctx, getState());
-		enterRule(_localctx, 14, RULE_rel_op);
+		enterRule(_localctx, 8, RULE_rel_op);
 		int _la;
 		try {
 			enterOuterAlt(_localctx, 1);
 			{
-			setState(97);
+			setState(87);
 			_la = _input.LA(1);
 			if ( !((((_la) & ~0x3f) == 0 && ((1L << _la) & ((1L << GT) | (1L << GTE) | (1L << EQ) | (1L << LT) | (1L << LTE))) != 0)) ) {
 			_errHandler.recoverInline(this);
@@ -781,12 +656,12 @@ public class LegoParser extends Parser {
 
 	public final Bin_opContext bin_op() throws RecognitionException {
 		Bin_opContext _localctx = new Bin_opContext(_ctx, getState());
-		enterRule(_localctx, 16, RULE_bin_op);
+		enterRule(_localctx, 10, RULE_bin_op);
 		int _la;
 		try {
 			enterOuterAlt(_localctx, 1);
 			{
-			setState(99);
+			setState(89);
 			_la = _input.LA(1);
 			if ( !((((_la) & ~0x3f) == 0 && ((1L << _la) & ((1L << MUL) | (1L << DIV) | (1L << MOD))) != 0)) ) {
 			_errHandler.recoverInline(this);
@@ -825,12 +700,12 @@ public class LegoParser extends Parser {
 
 	public final Bin_op_lowerContext bin_op_lower() throws RecognitionException {
 		Bin_op_lowerContext _localctx = new Bin_op_lowerContext(_ctx, getState());
-		enterRule(_localctx, 18, RULE_bin_op_lower);
+		enterRule(_localctx, 12, RULE_bin_op_lower);
 		int _la;
 		try {
 			enterOuterAlt(_localctx, 1);
 			{
-			setState(101);
+			setState(91);
 			_la = _input.LA(1);
 			if ( !(_la==ADD || _la==SUB) ) {
 			_errHandler.recoverInline(this);
@@ -868,11 +743,11 @@ public class LegoParser extends Parser {
 
 	public final Unary_connContext unary_conn() throws RecognitionException {
 		Unary_connContext _localctx = new Unary_connContext(_ctx, getState());
-		enterRule(_localctx, 20, RULE_unary_conn);
+		enterRule(_localctx, 14, RULE_unary_conn);
 		try {
 			enterOuterAlt(_localctx, 1);
 			{
-			setState(103);
+			setState(93);
 			match(NOT);
 			}
 		}
@@ -905,12 +780,12 @@ public class LegoParser extends Parser {
 
 	public final Binary_connContext binary_conn() throws RecognitionException {
 		Binary_connContext _localctx = new Binary_connContext(_ctx, getState());
-		enterRule(_localctx, 22, RULE_binary_conn);
+		enterRule(_localctx, 16, RULE_binary_conn);
 		int _la;
 		try {
 			enterOuterAlt(_localctx, 1);
 			{
-			setState(105);
+			setState(95);
 			_la = _input.LA(1);
 			if ( !((((_la) & ~0x3f) == 0 && ((1L << _la) & ((1L << AND) | (1L << OR) | (1L << IMPL) | (1L << EQUIV))) != 0)) ) {
 			_errHandler.recoverInline(this);
@@ -949,12 +824,12 @@ public class LegoParser extends Parser {
 
 	public final QuantifierContext quantifier() throws RecognitionException {
 		QuantifierContext _localctx = new QuantifierContext(_ctx, getState());
-		enterRule(_localctx, 24, RULE_quantifier);
+		enterRule(_localctx, 18, RULE_quantifier);
 		int _la;
 		try {
 			enterOuterAlt(_localctx, 1);
 			{
-			setState(107);
+			setState(97);
 			_la = _input.LA(1);
 			if ( !(_la==FORALL || _la==EXISTS) ) {
 			_errHandler.recoverInline(this);
@@ -964,6 +839,155 @@ public class LegoParser extends Parser {
 				_errHandler.reportMatch(this);
 				consume();
 			}
+			}
+		}
+		catch (RecognitionException re) {
+			_localctx.exception = re;
+			_errHandler.reportError(this, re);
+			_errHandler.recover(this, re);
+		}
+		finally {
+			exitRule();
+		}
+		return _localctx;
+	}
+
+	public static class DomainContext extends ParserRuleContext {
+		public List<NumberContext> number() {
+			return getRuleContexts(NumberContext.class);
+		}
+		public NumberContext number(int i) {
+			return getRuleContext(NumberContext.class,i);
+		}
+		public DomainContext(ParserRuleContext parent, int invokingState) {
+			super(parent, invokingState);
+		}
+		@Override public int getRuleIndex() { return RULE_domain; }
+		@Override
+		public <T> T accept(ParseTreeVisitor<? extends T> visitor) {
+			if ( visitor instanceof LegoVisitor ) return ((LegoVisitor<? extends T>)visitor).visitDomain(this);
+			else return visitor.visitChildren(this);
+		}
+	}
+
+	public final DomainContext domain() throws RecognitionException {
+		DomainContext _localctx = new DomainContext(_ctx, getState());
+		enterRule(_localctx, 20, RULE_domain);
+		try {
+			enterOuterAlt(_localctx, 1);
+			{
+			setState(99);
+			match(T__4);
+			setState(100);
+			number();
+			setState(101);
+			match(T__5);
+			setState(102);
+			number();
+			setState(103);
+			match(T__6);
+			}
+		}
+		catch (RecognitionException re) {
+			_localctx.exception = re;
+			_errHandler.reportError(this, re);
+			_errHandler.recover(this, re);
+		}
+		finally {
+			exitRule();
+		}
+		return _localctx;
+	}
+
+	public static class NumberContext extends ParserRuleContext {
+		public TerminalNode INT() { return getToken(LegoParser.INT, 0); }
+		public List<TerminalNode> SUB() { return getTokens(LegoParser.SUB); }
+		public TerminalNode SUB(int i) {
+			return getToken(LegoParser.SUB, i);
+		}
+		public NumberContext(ParserRuleContext parent, int invokingState) {
+			super(parent, invokingState);
+		}
+		@Override public int getRuleIndex() { return RULE_number; }
+		@Override
+		public <T> T accept(ParseTreeVisitor<? extends T> visitor) {
+			if ( visitor instanceof LegoVisitor ) return ((LegoVisitor<? extends T>)visitor).visitNumber(this);
+			else return visitor.visitChildren(this);
+		}
+	}
+
+	public final NumberContext number() throws RecognitionException {
+		NumberContext _localctx = new NumberContext(_ctx, getState());
+		enterRule(_localctx, 22, RULE_number);
+		int _la;
+		try {
+			setState(112);
+			_errHandler.sync(this);
+			switch (_input.LA(1)) {
+			case INT:
+				enterOuterAlt(_localctx, 1);
+				{
+				setState(105);
+				match(INT);
+				}
+				break;
+			case SUB:
+				enterOuterAlt(_localctx, 2);
+				{
+				setState(107); 
+				_errHandler.sync(this);
+				_la = _input.LA(1);
+				do {
+					{
+					{
+					setState(106);
+					match(SUB);
+					}
+					}
+					setState(109); 
+					_errHandler.sync(this);
+					_la = _input.LA(1);
+				} while ( _la==SUB );
+				setState(111);
+				match(INT);
+				}
+				break;
+			default:
+				throw new NoViableAltException(this);
+			}
+		}
+		catch (RecognitionException re) {
+			_localctx.exception = re;
+			_errHandler.reportError(this, re);
+			_errHandler.recover(this, re);
+		}
+		finally {
+			exitRule();
+		}
+		return _localctx;
+	}
+
+	public static class VarContext extends ParserRuleContext {
+		public TerminalNode ID() { return getToken(LegoParser.ID, 0); }
+		public VarContext(ParserRuleContext parent, int invokingState) {
+			super(parent, invokingState);
+		}
+		@Override public int getRuleIndex() { return RULE_var; }
+		@Override
+		public <T> T accept(ParseTreeVisitor<? extends T> visitor) {
+			if ( visitor instanceof LegoVisitor ) return ((LegoVisitor<? extends T>)visitor).visitVar(this);
+			else return visitor.visitChildren(this);
+		}
+	}
+
+	public final VarContext var() throws RecognitionException {
+		VarContext _localctx = new VarContext(_ctx, getState());
+		enterRule(_localctx, 24, RULE_var);
+		try {
+			enterOuterAlt(_localctx, 1);
+			{
+			setState(114);
+			match(ID);
 			}
 		}
 		catch (RecognitionException re) {
@@ -1004,33 +1028,34 @@ public class LegoParser extends Parser {
 	}
 
 	public static final String _serializedATN =
-		"\3\u608b\ua72a\u8133\ub9ed\u417c\u3be7\u7786\u5964\3\37p\4\2\t\2\4\3\t"+
+		"\3\u608b\ua72a\u8133\ub9ed\u417c\u3be7\u7786\u5964\3\36w\4\2\t\2\4\3\t"+
 		"\3\4\4\t\4\4\5\t\5\4\6\t\6\4\7\t\7\4\b\t\b\4\t\t\t\4\n\t\n\4\13\t\13\4"+
 		"\f\t\f\4\r\t\r\4\16\t\16\3\2\5\2\36\n\2\3\2\3\2\3\3\3\3\5\3$\n\3\3\4\3"+
 		"\4\3\4\3\4\3\4\3\4\3\4\3\4\3\4\3\4\3\4\3\4\3\4\3\4\3\4\3\4\3\4\3\4\3\4"+
 		"\5\49\n\4\3\4\3\4\3\4\3\4\7\4?\n\4\f\4\16\4B\13\4\3\5\3\5\3\5\3\5\3\5"+
 		"\3\5\3\5\5\5K\n\5\3\5\3\5\3\5\3\5\3\5\3\5\3\5\3\5\7\5U\n\5\f\5\16\5X\13"+
-		"\5\3\6\3\6\3\6\3\6\3\6\3\6\3\7\3\7\3\b\3\b\3\t\3\t\3\n\3\n\3\13\3\13\3"+
-		"\f\3\f\3\r\3\r\3\16\3\16\3\16\2\4\6\b\17\2\4\6\b\n\f\16\20\22\24\26\30"+
-		"\32\2\b\3\2\34\35\3\2\17\23\4\2\n\13\16\16\3\2\f\r\3\2\25\30\3\2\31\32"+
-		"\2l\2\35\3\2\2\2\4#\3\2\2\2\68\3\2\2\2\bJ\3\2\2\2\nY\3\2\2\2\f_\3\2\2"+
-		"\2\16a\3\2\2\2\20c\3\2\2\2\22e\3\2\2\2\24g\3\2\2\2\26i\3\2\2\2\30k\3\2"+
-		"\2\2\32m\3\2\2\2\34\36\5\4\3\2\35\34\3\2\2\2\35\36\3\2\2\2\36\37\3\2\2"+
-		"\2\37 \7\2\2\3 \3\3\2\2\2!$\5\6\4\2\"$\5\b\5\2#!\3\2\2\2#\"\3\2\2\2$\5"+
-		"\3\2\2\2%&\b\4\1\2&\'\5\b\5\2\'(\5\20\t\2()\5\b\5\2)9\3\2\2\2*+\5\26\f"+
-		"\2+,\5\6\4\6,9\3\2\2\2-.\5\32\16\2./\5\16\b\2/\60\7\3\2\2\60\61\5\n\6"+
-		"\2\61\62\7\4\2\2\62\63\5\6\4\4\639\3\2\2\2\64\65\7\5\2\2\65\66\5\6\4\2"+
-		"\66\67\7\6\2\2\679\3\2\2\28%\3\2\2\28*\3\2\2\28-\3\2\2\28\64\3\2\2\29"+
-		"@\3\2\2\2:;\f\5\2\2;<\5\30\r\2<=\5\6\4\6=?\3\2\2\2>:\3\2\2\2?B\3\2\2\2"+
-		"@>\3\2\2\2@A\3\2\2\2A\7\3\2\2\2B@\3\2\2\2CD\b\5\1\2DK\5\f\7\2EK\5\16\b"+
-		"\2FG\7\5\2\2GH\5\b\5\2HI\7\6\2\2IK\3\2\2\2JC\3\2\2\2JE\3\2\2\2JF\3\2\2"+
-		"\2KV\3\2\2\2LM\f\7\2\2MN\5\22\n\2NO\5\b\5\bOU\3\2\2\2PQ\f\6\2\2QR\5\24"+
-		"\13\2RS\5\b\5\7SU\3\2\2\2TL\3\2\2\2TP\3\2\2\2UX\3\2\2\2VT\3\2\2\2VW\3"+
-		"\2\2\2W\t\3\2\2\2XV\3\2\2\2YZ\7\7\2\2Z[\5\f\7\2[\\\7\b\2\2\\]\5\f\7\2"+
-		"]^\7\t\2\2^\13\3\2\2\2_`\t\2\2\2`\r\3\2\2\2ab\7\33\2\2b\17\3\2\2\2cd\t"+
-		"\3\2\2d\21\3\2\2\2ef\t\4\2\2f\23\3\2\2\2gh\t\5\2\2h\25\3\2\2\2ij\7\24"+
-		"\2\2j\27\3\2\2\2kl\t\6\2\2l\31\3\2\2\2mn\t\7\2\2n\33\3\2\2\2\t\35#8@J"+
-		"TV";
+		"\5\3\6\3\6\3\7\3\7\3\b\3\b\3\t\3\t\3\n\3\n\3\13\3\13\3\f\3\f\3\f\3\f\3"+
+		"\f\3\f\3\r\3\r\6\rn\n\r\r\r\16\ro\3\r\5\rs\n\r\3\16\3\16\3\16\2\4\6\b"+
+		"\17\2\4\6\b\n\f\16\20\22\24\26\30\32\2\7\3\2\17\23\4\2\n\13\16\16\3\2"+
+		"\f\r\3\2\25\30\3\2\31\32\2u\2\35\3\2\2\2\4#\3\2\2\2\68\3\2\2\2\bJ\3\2"+
+		"\2\2\nY\3\2\2\2\f[\3\2\2\2\16]\3\2\2\2\20_\3\2\2\2\22a\3\2\2\2\24c\3\2"+
+		"\2\2\26e\3\2\2\2\30r\3\2\2\2\32t\3\2\2\2\34\36\5\4\3\2\35\34\3\2\2\2\35"+
+		"\36\3\2\2\2\36\37\3\2\2\2\37 \7\2\2\3 \3\3\2\2\2!$\5\6\4\2\"$\5\b\5\2"+
+		"#!\3\2\2\2#\"\3\2\2\2$\5\3\2\2\2%&\b\4\1\2&\'\5\b\5\2\'(\5\n\6\2()\5\b"+
+		"\5\2)9\3\2\2\2*+\5\20\t\2+,\5\6\4\6,9\3\2\2\2-.\5\24\13\2./\5\32\16\2"+
+		"/\60\7\3\2\2\60\61\5\26\f\2\61\62\7\4\2\2\62\63\5\6\4\4\639\3\2\2\2\64"+
+		"\65\7\5\2\2\65\66\5\6\4\2\66\67\7\6\2\2\679\3\2\2\28%\3\2\2\28*\3\2\2"+
+		"\28-\3\2\2\28\64\3\2\2\29@\3\2\2\2:;\f\5\2\2;<\5\22\n\2<=\5\6\4\6=?\3"+
+		"\2\2\2>:\3\2\2\2?B\3\2\2\2@>\3\2\2\2@A\3\2\2\2A\7\3\2\2\2B@\3\2\2\2CD"+
+		"\b\5\1\2DK\5\30\r\2EK\5\32\16\2FG\7\5\2\2GH\5\b\5\2HI\7\6\2\2IK\3\2\2"+
+		"\2JC\3\2\2\2JE\3\2\2\2JF\3\2\2\2KV\3\2\2\2LM\f\7\2\2MN\5\f\7\2NO\5\b\5"+
+		"\bOU\3\2\2\2PQ\f\6\2\2QR\5\16\b\2RS\5\b\5\7SU\3\2\2\2TL\3\2\2\2TP\3\2"+
+		"\2\2UX\3\2\2\2VT\3\2\2\2VW\3\2\2\2W\t\3\2\2\2XV\3\2\2\2YZ\t\2\2\2Z\13"+
+		"\3\2\2\2[\\\t\3\2\2\\\r\3\2\2\2]^\t\4\2\2^\17\3\2\2\2_`\7\24\2\2`\21\3"+
+		"\2\2\2ab\t\5\2\2b\23\3\2\2\2cd\t\6\2\2d\25\3\2\2\2ef\7\7\2\2fg\5\30\r"+
+		"\2gh\7\b\2\2hi\5\30\r\2ij\7\t\2\2j\27\3\2\2\2ks\7\34\2\2ln\7\r\2\2ml\3"+
+		"\2\2\2no\3\2\2\2om\3\2\2\2op\3\2\2\2pq\3\2\2\2qs\7\34\2\2rk\3\2\2\2rm"+
+		"\3\2\2\2s\31\3\2\2\2tu\7\33\2\2u\33\3\2\2\2\13\35#8@JTVor";
 	public static final ATN _ATN =
 		new ATNDeserializer().deserialize(_serializedATN.toCharArray());
 	static {

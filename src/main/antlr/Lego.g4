@@ -1,7 +1,6 @@
 grammar Lego;
 
 program: start? EOF;
-
 start: formula | expr ;
 
 formula: expr rel_op expr                   #rel_opFormula
@@ -18,16 +17,12 @@ expr: expr bin_op expr                      #bin_opExpr
 	| '(' expr ')'                          #bracketedExpr
 	;
 
-domain: '[' number '..' number ']' ;
-number: INT | NEGINT ;
-var: ID ;
-
 rel_op: GT | GTE | EQ | LT | LTE ;
 bin_op: MUL
       | DIV
       | MOD
       ;
-bin_op_lower: ADD // This rule is needed to enforce lower precedence on addition and multiplicaiton
+bin_op_lower: ADD // This rule is needed to enforce lower precedence on addition and subtraction
             | SUB
             ;
 
@@ -35,6 +30,9 @@ unary_conn: NOT ;
 binary_conn: AND | OR | IMPL | EQUIV ;
 quantifier: FORALL | EXISTS ;
 
+domain: '[' number '..' number ']' ;
+number: INT | SUB+INT;
+var: ID ;
 
 MUL : '*' ;			
 DIV : '/' ;
@@ -58,8 +56,6 @@ EXISTS: E X I S T S ;
 
 ID  : [a-zA-Z][a-zA-Z0-9]* ;
 INT : [0-9]+ ;
-NEGINT : '-' INT ;
-
 
 NEWLINE: '\r'? '\n' ;
 WS: [ \r\t\n]+ -> skip ;

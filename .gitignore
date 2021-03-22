@@ -1,5 +1,8 @@
 # DANIEL
 .DS_STORE
+.idea/artifacts/
+META-INF/
+
 # Compiled class file
 *.class
 

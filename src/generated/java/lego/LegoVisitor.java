@@ -93,24 +93,6 @@ public interface LegoVisitor<T> extends ParseTreeVisitor<T> {
 	 */
 	T visitBin_op_lowerExpr(LegoParser.Bin_op_lowerExprContext ctx);
 	/**
-	 * Visit a parse tree produced by {@link LegoParser#domain}.
-	 * @param ctx the parse tree
-	 * @return the visitor result
-	 */
-	T visitDomain(LegoParser.DomainContext ctx);
-	/**
-	 * Visit a parse tree produced by {@link LegoParser#number}.
-	 * @param ctx the parse tree
-	 * @return the visitor result
-	 */
-	T visitNumber(LegoParser.NumberContext ctx);
-	/**
-	 * Visit a parse tree produced by {@link LegoParser#var}.
-	 * @param ctx the parse tree
-	 * @return the visitor result
-	 */
-	T visitVar(LegoParser.VarContext ctx);
-	/**
 	 * Visit a parse tree produced by {@link LegoParser#rel_op}.
 	 * @param ctx the parse tree
 	 * @return the visitor result
@@ -146,4 +128,22 @@ public interface LegoVisitor<T> extends ParseTreeVisitor<T> {
 	 * @return the visitor result
 	 */
 	T visitQuantifier(LegoParser.QuantifierContext ctx);
+	/**
+	 * Visit a parse tree produced by {@link LegoParser#domain}.
+	 * @param ctx the parse tree
+	 * @return the visitor result
+	 */
+	T visitDomain(LegoParser.DomainContext ctx);
+	/**
+	 * Visit a parse tree produced by {@link LegoParser#number}.
+	 * @param ctx the parse tree
+	 * @return the visitor result
+	 */
+	T visitNumber(LegoParser.NumberContext ctx);
+	/**
+	 * Visit a parse tree produced by {@link LegoParser#var}.
+	 * @param ctx the parse tree
+	 * @return the visitor result
+	 */
+	T visitVar(LegoParser.VarContext ctx);
 }

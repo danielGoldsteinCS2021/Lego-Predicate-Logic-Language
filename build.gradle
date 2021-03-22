@@ -3,6 +3,8 @@ plugins {
     id 'java'
 }
 
+libsDirName = "../"
+
 group 'org.example'
 version '1.0-SNAPSHOT'
 
@@ -15,9 +17,11 @@ dependencies {
     antlr 'org.antlr:antlr4:4.9'
 }
 
+// jar image is not being generated here and i'm not sure why
 jar{
     manifest{
-       attributes 'Main-Class' : 'Main'  // we define our main class here, overridden from mavenCentral
+       attributes 'Main-Class' : 'Project.main',  // we define our main class here, overridden from mavenCentral
+        'Class-Path': configurations.runtime.files.collect { "lib/$it.name" }.join(' ')
     }
     baseName 'eval'  // name for archive (.jar file)
     from configurations.compile.collect { it.isDirectory() ? it : zipTree(it) }  // recopy File tree if we're a directory
