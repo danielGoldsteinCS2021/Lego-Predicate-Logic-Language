@@ -100,7 +100,6 @@ public class EvalVisitor extends BaseEvalVisitor{
             if (right != 0)
                 return left/right;
             // should be division by zero error
-            System.out.println("HERE");
             throw new IllegalArgumentException("Division By Zero Error"); }
         if (op.kind == Bin_op.Kind.MOD){
             if (right != 0)
