@@ -23,8 +23,10 @@ public class EvalVisitor extends BaseEvalVisitor{
             return ((Num) expr).value;
         if (expr instanceof Var){
             int returnValue = env.search(((Var) expr).name);
-            if (returnValue == Integer.MIN_VALUE)
+            if (returnValue == Integer.MIN_VALUE){
+                System.out.println("Unbound Variable Error");
                 throw new IllegalArgumentException("Unbound Variable Error");
+            }
             return returnValue;
         }
         if (expr instanceof Binary_expr)
@@ -100,11 +102,13 @@ public class EvalVisitor extends BaseEvalVisitor{
             if (right != 0)
                 return left/right;
             // should be division by zero error
+            System.out.println("Division By Zero Error");
             throw new IllegalArgumentException("Division By Zero Error"); }
         if (op.kind == Bin_op.Kind.MOD){
             if (right != 0)
                 return left%right;
             // should be mod by zero error
+            System.out.println("Mod By Zero Error");
             throw new IllegalArgumentException("Mod By Zero Error"); }
         // should not get here
         return null;
