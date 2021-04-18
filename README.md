@@ -4,8 +4,7 @@
 
 ---
 #### In a terminal window:   
-`./gradlew`    
-Project built   
-`cd Project/build/classes/java/main`  
-`java Main`  
+`./gradlew jar`    
+Project built    
+`java -jar eval-1.0-SNAPSHOT.ja "<your_formula>"`  
  :rocket: :rocket: :rocket: :rocket: :rocket: :rocket: :rocket: :rocket: :rocket: :rocket:
