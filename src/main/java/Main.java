@@ -16,6 +16,6 @@ public class Main {
             boolean result = new EvalVisitor().eval(ast);
             System.out.println(result);
         }
-        else System.out.println("Please enter a formula, not an expression or string");
+        else System.out.println("Enter formula, not expression");
     }
 }
