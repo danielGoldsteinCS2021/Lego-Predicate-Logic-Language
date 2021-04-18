@@ -17,10 +17,11 @@ dependencies {
     antlr 'org.antlr:antlr4:4.9'
 }
 
-// jar image is not being generated here and i'm not sure why
+// run ./gradlew jar to create jar file
 jar{
+    exclude 'META-INF/*.SF', 'META-INF/*.DSA', 'META-INF/*.RSA', 'META-INF/*.MF'
     manifest{
-       attributes 'Main-Class' : 'Project.main',  // we define our main class here, overridden from mavenCentral
+       attributes 'Main-Class' : 'Main',  // we define our main class here, overridden from mavenCentral
         'Class-Path': configurations.runtime.files.collect { "lib/$it.name" }.join(' ')
     }
     baseName 'eval'  // name for archive (.jar file)
@@ -40,6 +41,7 @@ generateGrammarSource.doLast {
 }
 
 compileJava.dependsOn generateGrammarSource // java code can't be compiled until grammar has been generated
+
 
 task removeGeneratedSource(type: Delete){
     delete 'src/generated/'
