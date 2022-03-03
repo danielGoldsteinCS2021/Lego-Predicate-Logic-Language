@@ -52,14 +52,14 @@ public class LegoBaseVisitor<T> extends AbstractParseTreeVisitor<T> implements L
 	 * <p>The default implementation returns the result of calling
 	 * {@link #visitChildren} on {@code ctx}.</p>
 	 */
-	@Override public T visitBracketedForumla(LegoParser.BracketedForumlaContext ctx) { return visitChildren(ctx); }
+	@Override public T visitQuantifierFormula(LegoParser.QuantifierFormulaContext ctx) { return visitChildren(ctx); }
 	/**
 	 * {@inheritDoc}
 	 *
 	 * <p>The default implementation returns the result of calling
 	 * {@link #visitChildren} on {@code ctx}.</p>
 	 */
-	@Override public T visitQuantifierFormula(LegoParser.QuantifierFormulaContext ctx) { return visitChildren(ctx); }
+	@Override public T visitBracketedFormula(LegoParser.BracketedFormulaContext ctx) { return visitChildren(ctx); }
 	/**
 	 * {@inheritDoc}
 	 *

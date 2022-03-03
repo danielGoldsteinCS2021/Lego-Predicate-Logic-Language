@@ -28,7 +28,7 @@ public class ASTBuilder extends LegoBaseVisitor<ASTNode> {
     }
 
     @Override
-    public ASTNode visitBracketedForumla(LegoParser.BracketedForumlaContext ctx) {
+    public ASTNode visitBracketedFormula(LegoParser.BracketedFormulaContext ctx) {
         return visitFormula(ctx.formula());
     }
 
@@ -198,8 +198,8 @@ public class ASTBuilder extends LegoBaseVisitor<ASTNode> {
             return visitBinary_connFormula((LegoParser.Binary_connFormulaContext) ctx);
         if (ctx instanceof LegoParser.QuantifierFormulaContext)
             return visitQuantifierFormula((LegoParser.QuantifierFormulaContext) ctx);
-        if (ctx instanceof LegoParser.BracketedForumlaContext)
-            return visitBracketedForumla((LegoParser.BracketedForumlaContext) ctx);
+        if (ctx instanceof LegoParser.BracketedFormulaContext)
+            return visitBracketedFormula((LegoParser.BracketedFormulaContext) ctx);
         // should not get here
         throw new IllegalArgumentException();
     }

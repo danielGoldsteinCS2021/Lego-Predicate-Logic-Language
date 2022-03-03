@@ -7,7 +7,7 @@ formula: expr rel_op expr                   #rel_opFormula
     | unary_conn formula                    #unary_connFormula
     | formula binary_conn formula           #binary_connFormula
     | quantifier var ':' domain '.' formula #quantifierFormula
-    | '(' formula ')'                       #bracketedForumla
+    | '(' formula ')'                       #bracketedFormula
     ;
 
 expr: expr bin_op expr                      #bin_opExpr

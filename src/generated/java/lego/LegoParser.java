@@ -257,17 +257,6 @@ public class LegoParser extends Parser {
 			else return visitor.visitChildren(this);
 		}
 	}
-	public static class BracketedForumlaContext extends FormulaContext {
-		public FormulaContext formula() {
-			return getRuleContext(FormulaContext.class,0);
-		}
-		public BracketedForumlaContext(FormulaContext ctx) { copyFrom(ctx); }
-		@Override
-		public <T> T accept(ParseTreeVisitor<? extends T> visitor) {
-			if ( visitor instanceof LegoVisitor ) return ((LegoVisitor<? extends T>)visitor).visitBracketedForumla(this);
-			else return visitor.visitChildren(this);
-		}
-	}
 	public static class QuantifierFormulaContext extends FormulaContext {
 		public QuantifierContext quantifier() {
 			return getRuleContext(QuantifierContext.class,0);
@@ -285,6 +274,17 @@ public class LegoParser extends Parser {
 		@Override
 		public <T> T accept(ParseTreeVisitor<? extends T> visitor) {
 			if ( visitor instanceof LegoVisitor ) return ((LegoVisitor<? extends T>)visitor).visitQuantifierFormula(this);
+			else return visitor.visitChildren(this);
+		}
+	}
+	public static class BracketedFormulaContext extends FormulaContext {
+		public FormulaContext formula() {
+			return getRuleContext(FormulaContext.class,0);
+		}
+		public BracketedFormulaContext(FormulaContext ctx) { copyFrom(ctx); }
+		@Override
+		public <T> T accept(ParseTreeVisitor<? extends T> visitor) {
+			if ( visitor instanceof LegoVisitor ) return ((LegoVisitor<? extends T>)visitor).visitBracketedFormula(this);
 			else return visitor.visitChildren(this);
 		}
 	}
@@ -353,7 +353,7 @@ public class LegoParser extends Parser {
 				break;
 			case 4:
 				{
-				_localctx = new BracketedForumlaContext(_localctx);
+				_localctx = new BracketedFormulaContext(_localctx);
 				_ctx = _localctx;
 				_prevctx = _localctx;
 				setState(50);

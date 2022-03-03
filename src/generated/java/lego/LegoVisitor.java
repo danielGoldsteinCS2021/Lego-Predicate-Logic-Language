@@ -44,19 +44,19 @@ public interface LegoVisitor<T> extends ParseTreeVisitor<T> {
 	 */
 	T visitRel_opFormula(LegoParser.Rel_opFormulaContext ctx);
 	/**
-	 * Visit a parse tree produced by the {@code bracketedForumla}
-	 * labeled alternative in {@link LegoParser#formula}.
-	 * @param ctx the parse tree
-	 * @return the visitor result
-	 */
-	T visitBracketedForumla(LegoParser.BracketedForumlaContext ctx);
-	/**
 	 * Visit a parse tree produced by the {@code quantifierFormula}
 	 * labeled alternative in {@link LegoParser#formula}.
 	 * @param ctx the parse tree
 	 * @return the visitor result
 	 */
 	T visitQuantifierFormula(LegoParser.QuantifierFormulaContext ctx);
+	/**
+	 * Visit a parse tree produced by the {@code bracketedFormula}
+	 * labeled alternative in {@link LegoParser#formula}.
+	 * @param ctx the parse tree
+	 * @return the visitor result
+	 */
+	T visitBracketedFormula(LegoParser.BracketedFormulaContext ctx);
 	/**
 	 * Visit a parse tree produced by the {@code varExpr}
 	 * labeled alternative in {@link LegoParser#expr}.
